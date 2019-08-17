@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-02 21:59:03
+ * @LastEditTime: 2019-08-16 15:00:24
+ * @LastEditors: Please set LastEditors
+ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +35,7 @@
               <div class="inspector-container"></div>
               <div class="navigator-container"></div>
         </div>
-    </div>
+      </div>
 
     <!-- Rappid/JointJS dependencies: -->
     <script src="./index_files/jquery.js"></script>
@@ -64,7 +71,38 @@
         themePicker = new App.ThemePicker({ mainView: app });
         themePicker.render().$el.appendTo(document.body);
         window.addEventListener('load', function() {
-            app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
+            // app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
+
+            // var xhr = new XMLHttpRequest(),
+            // okStatus = document.location.protocol === "file:" ? 0 : 200;
+            // xhr.open('GET', 'cache.txt', false);
+            // xhr.overrideMimeType("text/html;charset=utf-8");//默认为utf-8
+            // xhr.send(null);
+            // if(xhr.status === okStatus) {
+            //   console.log(xhr.responseText);
+            //   app.graph.fromJSON(JSON.parse(xhr.responseText));
+            // }
+
+            // var files = $("#importfile").prop("files");
+            // if(files.length > 0) {
+            //   var file = files[0];
+            //   var reader = new FileReader();
+            //   reader.onload = function(evt) {
+            //     var res = evt.target.result;
+            //     console.log(res);
+            //     try {
+            //       app.graph.fromJSON(JSON.parse(res));
+            //     } catch (error) {
+                  
+            //     }
+            //   }
+            //   reader.readAsText(file, 'utf-8');
+            // }
+
+            var jsonStr = localStorage.getItem('last-saved');
+            if(jsonStr) {
+              app.graph.fromJSON(JSON.parse(jsonStr));
+            }
         });
     </script>
 </body>

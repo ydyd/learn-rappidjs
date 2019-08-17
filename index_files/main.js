@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-02 21:59:03
+ * @LastEditTime: 2019-08-16 14:51:31
+ * @LastEditors: Please set LastEditors
+ */
 var App = window.App || {};
 
 (function(_, joint) {
@@ -26,12 +33,19 @@ var App = window.App || {};
         init: function() {
 
             this.initializePaper();
+            // 左侧图形栏
             this.initializeStencil();
+            // 多选操作按钮Ctrl
             this.initializeSelection();
+            // 图形操作按钮和图形属性配置
             this.initializeToolsAndInspector();
+            // 缩略图
             this.initializeNavigator();
+            // 顶部操作栏
             this.initializeToolbar();
+            // 注册快捷键
             this.initializeKeyboardShortcuts();
+            // 左侧图形tooltips
             this.initializeTooltips();
         },
 
@@ -129,6 +143,12 @@ var App = window.App || {};
 
                 'ctrl+x shift+delete': function() {
                     this.clipboard.cutElements(this.selection.collection, this.graph);
+                },
+
+                'ctrl+s': function(evt) {
+                  evt.preventDefault();
+                  let jsonStr = JSON.stringify(this.graph.toJSON());
+                  localStorage.setItem('last-saved', jsonStr);
                 },
 
                 'delete backspace': function(evt) {
